@@ -45,6 +45,39 @@ transition: slide-left
 ---
 transition: slide-left
 ---
+## Systeme uniprogramming
+<br>
+
+<center>
+<img src="/snippets/CSF-Images.2.0.1.png" width="100%"/>
+Chaque processus a un temps d'éxécution géré par le kernel. <br>
+Lorsqu'un processus accede a un I/O (ex lecture fichier) il attend simplement. <br>
+On perd beaucoup de temps a attendre.
+</center>
+
+<br>
+
+> Pour passé d'un programme a un autre, on parle de commutation de context
+
+---
+transition: slide-left
+---
+## Systeme multiprogramming
+<br>
+  
+<center>
+  <img src="/snippets/CSF-Images.2.0.2.png" width="100%"/>
+  Chaque processus a un temps d'éxécution géré par le kernel. <br>
+  En cas d'attente I/O (ex lecture fichier) on donne la main a un autre programme.
+</center>
+
+<br>
+
+> Attention, le scheduler (ordonanceur system) peu préempter une tache a n'import quel moment. Pour changer de process.
+
+---
+transition: slide-left
+---
 ## Fork et wait
 
 La fonction `fork()` crée un nouveau processus (appelé processus enfant) en dupliquant le processus actuel (appelé processus parent).
@@ -59,6 +92,8 @@ La fonction `wait(int*status)` fait suspendre le processus parent jusqu'à ce qu
 L'ID du processus enfant qui s'est terminé.
 
 - La fonction `waitpid(pid_t, int*status)` permet d'attendre en processus spécifique.
+- La fonction `pid_t getpid(void);` Donne le pid du processus actuel
+- La fonction `pid_t getppid(void);` Donne le pid du processus parent
 
 ---
 transition: slide-left
@@ -120,7 +155,7 @@ Ils peuvent aussi être générés par le kernel en réponse à des événements
 - SIGFPE : Signale une erreur arithmétique fatale.
   - probablement une div par zero
 - SIGILL : Tente d'exécuter une instruction illégale ou malformée.
-  - éécutable corrompu ?
+  - éxécutable corrompu ? hack ?
 - SIGBUS : Tentative d'accès à une adresse non alignée ou à une zone mémoire non valide.
 
 ---
@@ -134,7 +169,6 @@ transition: slide-left
 
 void handler(int sig) {
     printf("Signal %d reçu.\n", sig);
-    // Actions à effectuer ici
 }
 
 int main() {
